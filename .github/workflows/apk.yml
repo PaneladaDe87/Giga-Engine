@@ -1,0 +1,28 @@
+name: Build APK
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v2
+      
+    - name: Setup Haxe
+      uses: HaxeFoundation/setup-haxe@v1
+      
+    - name: Setup Android SDK
+      uses: android-actions/setup-android@v2
+      
+    - name: Build APK
+      run: haxelib run lime build "project.xml" android -Dandroid -Dsource-header=none
+      
+    - name: Save APK artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: my-app.apk
+        path: export/android/bin/MyApp-debug.apk
