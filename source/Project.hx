@@ -1,6 +1,6 @@
 import lime.graphics.opengl.GL;
 
-class Main {
+class Project {
 
     public function new() {
         // Initialize OpenGL ES 3.1
